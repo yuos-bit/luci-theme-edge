@@ -1728,38 +1728,30 @@ h5 {
 }
 
 .login-page .login-container {
-    height: 100%;
-    margin-left: 4.5rem;
-    position: absolute;
-    top: 0px;
-    display: flex;
-    flex-direction: column;
-    -webkit-box-pack: center;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100%;
-    z-index: 2;
-    width: 420px;
-    box-shadow: rgba(0, 0, 0, 0.75) 0 0 35px -5px;
-    margin-left: 5%;
-    background: transparent
+    display: flex;                /* 启用 flexbox 布局 */
+    flex-direction: column;       /* 子元素纵向排列 */
+    justify-content: center;      /* 垂直居中子元素 */
+    align-items: center;          /* 水平居中子元素 */
+    height: 100vh;                /* 使页面充满视口高度 */
+    width: 420px;                 /* 宽度为 420px */
+    background: transparent;     /* 背景透明 */
+    box-shadow: rgba(0, 0, 0, 0.75) 0 0 35px -5px; /* 阴影效果 */
+    padding: 20px;                /* 内边距 */
+    margin-left: 5%;              /* 左边距 5%，使容器在屏幕上居中 */
+    position: relative;           /* 保持相对定位 */
 }
 
 .login-page .login-container .login-form {
-    display: flex;
-    flex-direction: column;
-    -webkit-box-align: center;
-    align-items: center;
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    min-height: 100%;
-    max-width: 420px;
-    background-color: #fff;
-    background-color: var(--white);
-    -webkit-backdrop-filter: blur(var(--blur-radius));
-    backdrop-filter: blur(var(--blur-radius));
-    background-color: rgba(244, 245, 247, var(--blur-opacity))
+    display: flex;                                /* 启用 flexbox 布局 */
+    flex-direction: column;                       /* 子元素纵向排列 */
+    align-items: center;                          /* 水平居中对齐子元素 */
+    justify-content: center;                      /* 垂直居中对齐子元素 */
+    width: 100%;                                  /* 宽度为父容器的 100% */
+    max-width: 420px;                             /* 最大宽度为 420px */
+    min-height: 100%;                             /* 最小高度为父容器的 100% */
+    background-color: rgba(244, 245, 247, var(--blur-opacity));  /* 设置带透明度的背景色 */
+    -webkit-backdrop-filter: blur(var(--blur-radius));  /* 设置背景模糊（兼容 webkit） */
+    backdrop-filter: blur(var(--blur-radius));    /* 设置背景模糊 */
 }
 
 .login-page .login-container .login-form .brand {
