@@ -27,10 +27,17 @@
 <script>
 	// thanks for Jo-Philipp Wich <jow@openwrt.org>
 	var luciLocation = <%= luci.http.write_json(luci.dispatcher.context.path) %>;
+	var winHeight = $(window).height();
+	$(window).resize(function () {
+		var winWidth = $(window).width()
+		if(winWidth < 600){
+			var newHeight = $(this).height();
+			var keyboradHeight = newHeight - winHeight;
+			$(".ftc").css("bottom", keyboradHeight + 30);
+		}
+	})
 </script>
-<script src="<%=media%>/js/script.js?v=2.1"></script>
-<script src="<%=media%>/js/waves.js"></script>
-     
+<script type="text/javascript">L.require('menu-edge')</script>
 </body>
 </html>
 

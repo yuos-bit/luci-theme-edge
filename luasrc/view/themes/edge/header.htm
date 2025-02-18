@@ -21,6 +21,7 @@
 	local util = require "luci.util"
 	local http = require "luci.http"
 	local disp = require "luci.dispatcher"
+    local ver = require "luci.version"
 
 	local boardinfo = util.ubus("system", "board")
 
@@ -28,6 +29,7 @@
     
     local fs	= require "nixio.fs"
 	local nutil = require "nixio.util"
+    local uci = require 'luci.model.uci'.cursor()
     
     
     
@@ -35,6 +37,25 @@
 	http.prepare_content("text/html")
     
     math.randomseed(os.time())
+
+	-- Custom settings
+	local mode = 'normal'
+	local dark_css = fs.readfile('/www/luci-static/edge/css/dark.css')
+	local bar_color = '#09c'
+	local primary, dark_primary, blur_radius, blur_radius_dark, blur_opacity
+	if fs.access('/etc/config/edge') then
+		primary = uci:get_first('edge', 'global', 'primary')
+		dark_primary = uci:get_first('edge', 'global', 'dark_primary')
+		blur_radius = uci:get_first('edge', 'global', 'blur')
+		blur_radius_dark = uci:get_first('edge', 'global', 'blur_dark')
+		blur_opacity = uci:get_first('edge', 'global', 'transparency')
+		blur_opacity_dark = uci:get_first('edge', 'global', 'transparency_dark')
+		mode = uci:get_first('edge', 'global', 'mode')
+		bar_color = mode == 'dark' and dark_primary or primary
+	end
+
+	-- Brand name
+	local brand_name = boardinfo.hostname or "?"
 
 -%>
 <!DOCTYPE html>
@@ -64,13 +85,35 @@
 	<% end -%>
 	<% if css then %>
 	<style title="text/css">
+        <% if mode == 'normal' then %>
+            @media (prefers-color-scheme: dark) {
+                <%=dark_css%>
+            }
+        <% elseif mode == 'dark' then %>
+            <%=dark_css%>
+        <% end -%>
+        <% if fs.access('/etc/config/argon') then %>
+        :root {
+            --primary: <%=primary%>;
+            --dark-primary: <%=dark_primary%>;
+            --blur-radius:<%=blur_radius%>px;
+            --blur-opacity:<%=blur_opacity%>;
+            --blur-radius-dark:<%=blur_radius_dark%>px;
+            --blur-opacity-dark:<%=blur_opacity_dark%>;
+        }
+        <% end -%>
+        </style>
+	<% end -%>
+    <% if css then %>
+	<style title="text/css">
 		<%=css %>
 	</style>
 	<% end -%>
-	<script src="<%=url('admin/translations', luci.i18n.context.lang)%>"></script>
-	<script src="<%=resource%>/cbi.js"></script>
-	<script src="<%=resource%>/luci.js"></script>
-	<script src="<%=media%>/js/jquery.min.js"></script>
+	<script src="<%=media%>/js/polyfill.min.js"></script>
+	<script src="<%=url('admin/translations', luci.i18n.context.lang)%>?v=<%=ver.luciversion%>"></script>
+	<script src="<%=resource%>/cbi.js?v=<%=ver.luciversion%>"></script>
+	<script src="<%=resource%>/luci.js?v=<%=ver.luciversion%>"></script>
+	<script src="<%=media%>/js/jquery.min.js?v=3.5.1"></script>
 		<script type="text/javascript">//<![CDATA[
 	function EF() { return L.dom.create.apply(L.dom, arguments) }
 		(function() {

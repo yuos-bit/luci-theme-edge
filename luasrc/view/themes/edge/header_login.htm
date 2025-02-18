@@ -17,26 +17,42 @@
 -%>
 
 <%
-    local sys  = require "luci.sys"
+	local sys = require "luci.sys"
 	local util = require "luci.util"
 	local http = require "luci.http"
 	local disp = require "luci.dispatcher"
+	local ver = require "luci.version"
 
 	local boardinfo = util.ubus("system", "board")
 
 	local node = disp.context.dispatched
     
-    local fs	= require "nixio.fs"
+	local fs = require "nixio.fs"
 	local nutil = require "nixio.util"
+	local uci = require 'luci.model.uci'.cursor()
     
     
     
 	-- send as HTML5
 	http.prepare_content("text/html")
-    
-    math.randomseed(os.time())
-    
 
+	math.randomseed(tonumber(tostring(os.time()):reverse():sub(1, 9)))
+    
+	-- Custom settings
+	local mode = 'normal'
+	local dark_css = fs.readfile('/www/luci-static/edge/css/dark.css')
+	local bar_color = '#09c'
+	local primary, dark_primary, blur_radius, blur_radius_dark, blur_opacity
+	if fs.access('/etc/config/edge') then
+		primary = uci:get_first('edge', 'global', 'primary')
+		dark_primary = uci:get_first('edge', 'global', 'dark_primary')
+		blur_radius = uci:get_first('edge', 'global', 'blur')
+		blur_radius_dark = uci:get_first('edge', 'global', 'blur_dark')
+		blur_opacity = uci:get_first('edge', 'global', 'transparency')
+		blur_opacity_dark = uci:get_first('edge', 'global', 'transparency_dark')
+		mode = uci:get_first('edge', 'global', 'mode')
+		bar_color = mode == 'dark' and dark_primary or primary
+	end
 -%>
 <!DOCTYPE html>
 <html lang="<%=luci.i18n.context.lang%>">
@@ -47,8 +63,13 @@
 		<%=striptags( (boardinfo.hostname or "?") .. ( (node and node.title) and ' - ' .. translate(node.title) or '')) %>
 		- LuCI</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta name="format-detection" content="telephone=no, email=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="x5-fullscreen" content="true">
+	<meta name="full-screen" content="yes">
+	<meta name="x5-page-mode" content="app">
+	<meta name="browsermode" content="application">
 	<meta name="theme-color" content="#09c">
 	<meta name="msapplication-tap-highlight" content="no">
 	<meta name="msapplication-TileColor" content="#09c">
@@ -62,6 +83,28 @@
 	<link rel="stylesheet" href="<%=media%>/cascade.css">
 	<link rel="shortcut icon" href="<%=media%>/favicon.ico">
 	<% if node and node.css then %>
+	<link rel="stylesheet" href="<%=media%>/css/cascade.css<%# ?v=PKG_VERSION %>">
+	<style title="text/css">
+		<% if mode == 'normal' then %>
+			@media (prefers-color-scheme: dark) {
+				<%=dark_css%>
+			}
+		<% elseif mode == 'dark' then %>
+			<%=dark_css%>
+		<% end -%>
+		<% if fs.access('/etc/config/edge') then %>
+		:root {
+			--primary: <%=primary%>;
+			--dark-primary: <%=dark_primary%>;
+			--blur-radius:<%=blur_radius%>px;
+			--blur-opacity:<%=blur_opacity%>;
+			--blur-radius-dark:<%=blur_radius_dark%>px;
+			--blur-opacity-dark:<%=blur_opacity_dark%>;
+		}
+		<% end -%>
+	</style>
+	<link rel="shortcut icon" href="<%=media%>/favicon.ico">
+	<% if node and node.css then %>
 	<link rel="stylesheet" href="<%=resource%>/<%=node.css%>">
 	<% end -%>
 	<% if css then %>
@@ -69,48 +112,7 @@
 		<%=css %>
 	</style>
 	<% end -%>
-	<script src="<%=url('admin/translations', luci.i18n.context.lang)%>"></script>
-	<script src="<%=resource%>/cbi.js"></script>
-	<script src="<%=resource%>/luci.js"></script>
-	<script src="<%=media%>/js/jquery.min.js"></script>
-	<script type="text/javascript">//<![CDATA[
-		(function () {
-			function get_children(node) {
-				var children = [];
-
-				for (var k in node.children) {
-					if (!node.children.hasOwnProperty(k))
-						continue;
-
-					if (!node.children[k].satisfied)
-						continue;
-
-					if (!node.children[k].hasOwnProperty('title'))
-						continue;
-
-					children.push(Object.assign(node.children[k], { name: k }));
-				}
-
-				return children.sort(function (a, b) {
-					return ((a.order || 1000) - (b.order || 1000));
-				});
-			}
-
-		document.addEventListener('luci-loaded', function (ev) {
-			var tree = <%= luci.http.write_json(luci.dispatcher.menu_json() or { }) %>,
-			node = tree,
-			url = '';
-
-		if (L.env.dispatchpath.length >= 3) {
-			for (var i = 0; i < 3 && node; i++) {
-				node = node.children[L.env.dispatchpath[i]];
-				url = url + (url ? '/' : '') + L.env.dispatchpath[i];
-			}
-
-		}
-		});
-		}) ();
-	//]]></script>
+	<script src="<%=media%>/js/jquery.min.js?v=3.5.1"></script>
 </head>
 
 <body
