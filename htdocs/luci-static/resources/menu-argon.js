@@ -36,7 +36,9 @@ return baseclass.extend({
 	},
 
 	handleMenuExpand: function (ev) {
-		var a = ev.target, slide = a.parentNode, slide_menu = a.nextElementSibling;
+		var a = ev.target,
+			slide = a.parentNode,
+			slide_menu = a.nextElementSibling;
 		var collapse = false;
 
 		document.querySelectorAll('.main .main-left .nav > li >ul.active').forEach(function (ul) {
@@ -52,10 +54,10 @@ return baseclass.extend({
 
 		if (!slide_menu)
 			return;
-		
-		
+
+
 		if (!collapse) {
-			$(slide).find(".slide-menu").slideDown("fast",function(){
+			$(slide).find(".slide-menu").slideDown("fast", function () {
 				slide_menu.classList.add('active');
 				a.classList.add('active');
 			});
@@ -67,7 +69,9 @@ return baseclass.extend({
 
 	renderMainMenu: function (tree, url, level) {
 		var l = (level || 0) + 1,
-			ul = E('ul', { 'class': level ? 'slide-menu' : 'nav' }),
+			ul = E('ul', {
+				'class': level ? 'slide-menu' : 'nav'
+			}),
 			children = ui.menu.getChildren(tree);
 
 		if (children.length == 0 || l > 2)
@@ -85,7 +89,9 @@ return baseclass.extend({
 				menuClass += " active";
 			}
 
-			ul.appendChild(E('li', { 'class': slideClass }, [
+			ul.appendChild(E('li', {
+				'class': slideClass
+			}, [
 				E('a', {
 					'href': L.url(url, children[i].name),
 					'click': (l == 1) ? ui.createHandlerFn(this, 'handleMenuExpand') : null,
@@ -107,7 +113,9 @@ return baseclass.extend({
 	renderTabMenu: function (tree, url, level) {
 		var container = document.querySelector('#tabmenu'),
 			l = (level || 0) + 1,
-			ul = E('ul', { 'class': 'tabs' }),
+			ul = E('ul', {
+				'class': 'tabs'
+			}),
 			children = ui.menu.getChildren(tree),
 			activeNode = null;
 
@@ -119,8 +127,12 @@ return baseclass.extend({
 				activeClass = isActive ? ' active' : '',
 				className = 'tabmenu-item-%s %s'.format(children[i].name, activeClass);
 
-			ul.appendChild(E('li', { 'class': className }, [
-				E('a', { 'href': L.url(url, children[i].name) }, [_(children[i].title)])
+			ul.appendChild(E('li', {
+				'class': className
+			}, [
+				E('a', {
+					'href': L.url(url, children[i].name)
+				}, [_(children[i].title)])
 			]));
 
 			if (isActive)
@@ -147,8 +159,7 @@ return baseclass.extend({
 			sidebar.classList.remove('active');
 			scrollbar.classList.remove('active');
 			darkmask.classList.remove('active');
-		}
-		else {
+		} else {
 			showside.classList.add('active');
 			sidebar.classList.add('active');
 			scrollbar.classList.add('active');
