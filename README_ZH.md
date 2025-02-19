@@ -30,8 +30,6 @@
 [immortalwrt]: https://github.com/immortalwrt/immortalwrt
 
 <div align="center">
-<img src="https://github.com/yuos-bit/other/releases/download/Openwrt/2025-02-19_16-58-54.jpg">
-
 # 一个全新的 OpenWrt 主题
 
 Argon 是**一款干净整洁的 OpenWrt LuCI 主题**，  
@@ -55,7 +53,7 @@ Argon 是**一款干净整洁的 OpenWrt LuCI 主题**，
 [屏幕截图](#屏幕截图) •
 [贡献者](#贡献者) •
 [鸣谢](#鸣谢)
-
+<img src="https://github.com/yuos-bit/other/releases/download/Openwrt/2025-02-19_16-58-54.jpg">
 <img src="https://raw.githubusercontent.com/jerrykuku/staff/master/argon2.gif">
 </div>
 
