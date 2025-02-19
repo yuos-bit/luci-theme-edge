@@ -1726,200 +1726,218 @@ h5 {
     background-size: cover;
     transition: all .5s
 }
-
+/* .login-container 相关样式 */
 .login-page .login-container {
-    display: flex;                /* 启用 flexbox 布局 */
-    flex-direction: column;       /* 子元素纵向排列 */
-    justify-content: center;      /* 垂直居中子元素 */
-    align-items: center;          /* 水平居中子元素 */
-    height: 100vh;                /* 使页面充满视口高度 */
-    width: 420px;                 /* 宽度为 420px */
-    background: transparent;     /* 背景透明 */
-    box-shadow: rgba(0, 0, 0, 0.75) 0 0 35px -5px; /* 阴影效果 */
-    padding: 20px;                /* 内边距 */
-    margin-left: 5%;              /* 左边距 5%，使容器在屏幕上居中 */
-    position: relative;           /* 保持相对定位 */
+    display: flex;                    /* 启用 Flexbox 布局，使容器内的元素可以灵活排列 */
+    flex-direction: column;           /* 子元素纵向排列 */
+    justify-content: center;          /* 垂直居中子元素 */
+    align-items: center;              /* 水平居中子元素 */
+    height: 100vh;                    /* 设置容器高度为视口高度，确保登录框垂直居中 */
+    width: 100%;                      /* 容器宽度占满 100% */
+    max-width: 420px;                 /* 设置容器最大宽度为 420px */
+    background: transparent;         /* 背景透明 */
+    box-shadow: rgba(0, 0, 0, 0.75) 0 0 35px -5px;  /* 添加阴影效果，使容器更加立体 */
+    padding: 20px;                    /* 设置内边距，避免内容贴边 */
+    margin: 0 auto;                   /* 水平居中容器 */
+    position: relative;               /* 保持相对定位，为 footer 定位提供依据 */
+    box-sizing: border-box;           /* 确保 padding 和 border 不影响元素的总宽度和高度 */
 }
 
+/* 登录表单区域 */
 .login-page .login-container .login-form {
-    display: flex;                                /* 启用 flexbox 布局 */
-    flex-direction: column;                       /* 子元素纵向排列 */
-    align-items: center;                          /* 水平居中对齐子元素 */
-    justify-content: center;                      /* 垂直居中对齐子元素 */
-    width: 100%;                                  /* 宽度为父容器的 100% */
-    max-width: 420px;                             /* 最大宽度为 420px */
-    min-height: 100%;                             /* 最小高度为父容器的 100% */
-    background-color: rgba(244, 245, 247, var(--blur-opacity));  /* 设置带透明度的背景色 */
+    display: flex;                    /* 启用 Flexbox 布局 */
+    flex-direction: column;           /* 子元素纵向排列 */
+    align-items: center;              /* 水平居中对齐子元素 */
+    justify-content: center;          /* 垂直居中对齐子元素 */
+    width: 100%;                      /* 宽度为父容器的 100% */
+    max-width: 420px;                 /* 最大宽度为 420px */
+    min-height: 100%;                 /* 最小高度为父容器的 100% */
+    background-color: rgba(244, 245, 247, var(--blur-opacity)); /* 设置带透明度的背景色 */
     -webkit-backdrop-filter: blur(var(--blur-radius));  /* 设置背景模糊（兼容 webkit） */
-    backdrop-filter: blur(var(--blur-radius));    /* 设置背景模糊 */
+    backdrop-filter: blur(var(--blur-radius));          /* 设置背景模糊 */
 }
 
+/* 品牌区域（Logo及品牌文字） */
 .login-page .login-container .login-form .brand {
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    margin: 50px auto 100px 50px;
-    color: #525461;
-    color: var(--default);
-    justify-content: center
+    display: flex;                            /* 启用 Flexbox 布局 */
+    align-items: center;                      /* 垂直居中品牌名称 */
+    justify-content: center;                  /* 水平居中品牌名称 */
+    margin: 50px auto 100px 50px;             /* 设置 Logo 与其他内容的间距 */
+    color: #525461;                           /* 默认文字颜色 */
+    color: var(--default);                    /* 使用自定义的默认颜色 */
 }
 
+/* 品牌图标（Logo 图标） */
 .login-page .login-container .login-form .brand .icon {
-    width: 50px;
-    height: auto;
-    margin-right: 25px
+    width: 50px;                             /* 设置 Logo 图标宽度 */
+    height: auto;                            /* 高度自动，根据宽度比例调整 */
+    margin-right: 25px;                      /* 图标与文字的间距 */
 }
 
+/* 品牌文字 */
 .login-page .login-container .login-form .brand .brand-text {
-    font-size: 1.25rem;
-    font-weight: 700;
-    font-family: "TypoGraphica"
+    font-size: 1.25rem;                      /* 字体大小 */
+    font-weight: 700;                        /* 字体加粗 */
+    font-family: "TypoGraphica";             /* 设置字体 */
 }
 
+/* Logo区域悬停效果 */
 .login-page .login-container .login-form .brand:hover {
-    text-decoration: none
+    text-decoration: none;                   /* 去掉悬停时的下划线 */
 }
 
+/* 登录表单 */
 .login-page .login-container .login-form .form-login {
-    width: 100%;
-    padding: 20px 50px;
-    box-sizing: border-box
+    width: 100%;                             /* 宽度为父容器的 100% */
+    padding: 20px 50px;                      /* 设置内边距 */
+    box-sizing: border-box;                  /* 包含内边距和边框的总尺寸计算 */
 }
 
+/* 错误信息提示框 */
 .login-page .login-container .login-form .form-login .errorbox {
-    text-align: center;
-    color: #fb6340;
-    color: var(--warning);
-    padding-bottom: 2rem
+    text-align: center;                      /* 文字居中 */
+    color: #fb6340;                          /* 错误提示文字颜色 */
+    color: var(--warning);                   /* 使用自定义的警告颜色 */
+    padding-bottom: 2rem;                    /* 底部间距 */
 }
 
+/* 输入框区域 */
 .login-page .login-container .login-form .form-login .input-group {
-    margin-bottom: 1.25rem;
-    position: relative
+    margin-bottom: 1.25rem;                  /* 每个输入框之间的垂直间距 */
+    position: relative;                      /* 为伪元素定位 */
 }
 
+/* 输入框边框 */
 .login-page .login-container .login-form .form-login .input-group::before {
-    font-family: 'argon' !important;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #525461;
-    color: var(--default);
-    font-size: 1.5rem;
-    position: absolute;
-    z-index: 100;
-    left: 10px;
-    top: 10px
+    font-family: 'argon' !important;         /* 强制使用指定字体 */
+    font-style: normal;                      /* 设置字体样式为正常 */
+    font-weight: normal;                     /* 设置字体粗细为正常 */
+    font-variant: normal;                    /* 字体变体 */
+    text-transform: none;                    /* 不做文本转换 */
+    line-height: 1;                          /* 设置行高 */
+    color: #525461;                          /* 输入框标签颜色 */
+    color: var(--default);                   /* 使用自定义默认颜色 */
+    font-size: 1.5rem;                       /* 字体大小 */
+    position: absolute;                      /* 绝对定位标签 */
+    left: 10px;                              /* 左边距 */
+    top: 10px;                               /* 上边距 */
 }
 
+/* 输入框下边框 */
 .login-page .login-container .login-form .form-login .input-group .border {
-    position: absolute;
-    width: 100%;
-    height: 1px;
-    bottom: 0;
-    border-bottom: 1px #5e72e4 solid;
-    border-bottom: 1px var(--primary) solid;
-    transform: scaleX(0);
-    transition: transform .3s
+    position: absolute;                      /* 绝对定位 */
+    width: 100%;                             /* 下边框宽度为 100% */
+    height: 1px;                             /* 下边框高度为 1px */
+    bottom: 0;                               /* 底部对齐 */
+    border-bottom: 1px #5e72e4 solid;        /* 设置边框颜色 */
+    border-bottom: 1px var(--primary) solid; /* 使用自定义主色 */
+    transform: scaleX(0);                    /* 初始状态下隐藏 */
+    transition: transform .3s;               /* 动画过渡效果 */
 }
 
+/* 输入框的具体样式 */
 .login-page .login-container .login-form .form-login .input-group input {
-    font-size: 1rem;
-    line-height: 1.5em;
-    display: block;
-    width: 100%;
-    padding: .5rem .75rem .5rem 3rem;
-    margin: .825rem 0;
-    box-sizing: border-box;
-    transition: all .3s cubic-bezier(.68, -0.55, .265, 1.55);
-    color: #525461;
-    color: var(--default);
-    border: 0;
-    border-radius: 0;
-    border-bottom: 1px solid #fff;
-    border-bottom: 1px solid var(--white);
-    background-color: transparent;
-    background-clip: padding-box;
-    box-shadow: 0 3px 2px rgba(233, 236, 239, 0.05);
-    outline: none
+    font-size: 1rem;                         /* 字体大小 */
+    line-height: 1.5em;                      /* 行高 */
+    display: block;                          /* 设置为块级元素 */
+    width: 100%;                             /* 宽度为 100% */
+    padding: .5rem .75rem .5rem 3rem;         /* 设置内边距 */
+    margin: .825rem 0;                        /* 设置上下间距 */
+    box-sizing: border-box;                  /* 包含内边距和边框的总尺寸计算 */
+    transition: all .3s cubic-bezier(.68, -0.55, .265, 1.55); /* 设置动画过渡效果 */
+    color: #525461;                          /* 输入框文本颜色 */
+    color: var(--default);                   /* 使用自定义文本颜色 */
+    border: 0;                               /* 去除边框 */
+    border-radius: 0;                        /* 去除圆角 */
+    border-bottom: 1px solid #fff;           /* 设置底边框 */
+    border-bottom: 1px solid var(--white);   /* 使用自定义颜色 */
+    background-color: transparent;          /* 背景透明 */
+    background-clip: padding-box;            /* 背景裁剪方式 */
+    box-shadow: 0 3px 2px rgba(233, 236, 239, 0.05); /* 添加阴影 */
+    outline: none;                           /* 去除聚焦时的轮廓 */
 }
 
+/* 输入框聚焦时边框动画效果 */
 .login-page .login-container .login-form .form-login .input-group input:focus+.border {
-    transform: scaleX(1)
+    transform: scaleX(1);                    /* 聚焦时显示边框 */
 }
 
+/* 密码输入框 */
 .login-page .login-container .login-form .form-login .input-group .cbi-input-password {
-    margin-bottom: 2rem;
-    position: relative
+    margin-bottom: 2rem;                     /* 下边距 */
+    position: relative;                      /* 为伪元素定位 */
 }
 
+/* 密码输入框图标 */
 .login-page .login-container .login-form .form-login .user-icon::before {
-    content: "\e971"
+    content: "\e971";                        /* 设置用户图标 */
 }
 
+/* 用户名输入框图标 */
 .login-page .login-container .login-form .form-login .pass-icon::before {
-    content: "\e910"
+    content: "\e910";                        /* 设置密码图标 */
 }
 
+/* 登录按钮 */
 .login-page .login-container .login-form .cbi-button-apply {
-    width: 100% !important;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 0 50px 0;
-    font-weight: 600;
-    font-size: 15px;
-    color: #fff;
-    color: var(--white);
-    text-align: center;
-    width: 100%;
-    cursor: pointer;
-    min-height: 50px;
-    background-color: #5e72e4 !important;
-    background-color: var(--primary) !important;
-    border-radius: 6px;
-    outline: none;
-    border-width: initial;
-    border-style: none;
-    border-color: initial;
-    border-image: initial;
-    padding: 10px 0px;
-    margin: 30px 0px 100px;
-    transition: all .3s !important;
-    letter-spacing: .8rem
+    width: 100% !important;                  /* 强制宽度为 100% */
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0 50px 0; /* 添加阴影效果 */
+    font-weight: 600;                        /* 字体加粗 */
+    font-size: 15px;                         /* 字体大小 */
+    color: #fff;                             /* 字体颜色为白色 */
+    color: var(--white);                     /* 使用自定义白色 */
+    text-align: center;                      /* 文字居中 */
+    cursor: pointer;                        /* 鼠标悬停时显示为指针 */
+    min-height: 50px;                        /* 最小高度 50px */
+    background-color: #5e72e4 !important;    /* 按钮背景色 */
+    background-color: var(--primary) !important; /* 使用自定义主色 */
+    border-radius: 6px;                      /* 设置圆角 */
+    outline: none;                           /* 去除外部轮廓 */
+    border-width: initial;                   /* 默认边框 */
+    border-style: none;                      /* 无边框 */
+    border-color: initial;                   /* 默认边框颜色 */
+    border-image: initial;                   /* 默认边框样式 */
+    padding: 10px 0px;                       /* 上下内边距 */
+    margin: 30px 0px 100px;                  /* 上下外边距 */
+    transition: all .3s !important;          /* 动画过渡效果 */
+    letter-spacing: .8rem;                   /* 字母间距 */
 }
 
+/* 登录按钮悬停效果 */
 .login-page .login-container .login-form .cbi-button-apply:hover,
 .login-page .login-container .login-form .cbi-button-apply :focus {
-    opacity: .9
+    opacity: .9;                             /* 悬停时降低不透明度 */
 }
 
+/* 页脚样式 */
 .login-page .login-container footer {
-    box-sizing: border-box;
-    width: 100%;
-    text-align: center;
-    line-height: 1.6rem;
-    display: flex;
-    justify-content: space-evenly;
-    margin-top: auto;
-    padding: 0px 0px 30px;
-    z-index: 10;
-    color: #525461;
-    color: var(--default);
-    position: absolute;
-    bottom: 0
+    box-sizing: border-box;                  /* 包含内边距和边框的总尺寸计算 */
+    width: 100%;                              /* 页脚宽度为 100% */
+    text-align: center;                       /* 文字居中 */
+    line-height: 1.6rem;                      /* 行高 */
+    display: flex;                            /* 使用 Flexbox 布局 */
+    justify-content: space-evenly;            /* 内容均匀分布 */
+    margin-top: auto;                         /* 确保页脚位于容器底部 */
+    padding: 0px 0px 30px;                    /* 内边距 */
+    z-index: 10;                              /* 设置 z-index，确保页脚在内容上方 */
+    color: #525461;                           /* 页脚文字颜色 */
+    color: var(--default);                    /* 使用自定义颜色 */
+    position: absolute;                       /* 绝对定位 */
+    bottom: 0;                                /* 距底部 0px */
 }
 
+/* 页脚版权信息 */
 .login-page .login-container footer .ftc {
-    position: absolute;
-    bottom: 30px;
-    width: 100%
+    position: absolute;                       /* 绝对定位 */
+    bottom: 30px;                             /* 距底部 30px */
+    width: 100%;                              /* 宽度 100% */
 }
 
+/* 页脚链接 */
 .login-page .login-container footer .luci-link {
-    display: block
+    display: block;                           /* 设置为块级元素 */
 }
+
 
 header,
 .main {
@@ -5617,7 +5635,7 @@ pre.command-output {
     }
 
     .login-page .login-container footer {
-        display: none
+        display: none /* 隐藏页脚 */
     }
 }
 
@@ -5646,24 +5664,28 @@ pre.command-output {
     }
 }
 
-@media screen and (max-width:480px) {
+@media screen and (max-width: 480px) {
+    /* 隐藏类名为 mobile-hide 的元素 */
     .mobile-hide {
-        display: none
+        display: none;  /* 将元素完全隐藏 */
     }
 
+    /* 调整 .login-container 的样式 */
     .login-page .login-container {
-        margin-left: 0rem !important;
-        width: 100%
+        margin-left: 0rem !important;  /* 设置左边距为 0 */
+        width: 100%;                    /* 宽度设置为 100%，使容器充满屏幕宽度 */
     }
 
+    /* 调整输入框前的伪元素的颜色 */
     .login-page .login-container .login-form .form-login .input-group::before {
-        color: #525461
+        color: #525461;  /* 改变伪元素文本颜色 */
     }
 
+    /* 调整输入框的颜色、边框 */
     .login-page .login-container .login-form .form-login .input-group input {
-        color: #525461;
-        border-bottom: white 1px solid;
-        border-bottom: var(--white) 1px solid;
-        border-radius: 0
+        color: #525461;                /* 设置输入框内的文字颜色 */
+        border-bottom: white 1px solid; /* 设置底部边框为白色 */
+        border-bottom: var(--white) 1px solid; /* 使用自定义白色边框 */
+        border-radius: 0;               /* 设置没有圆角 */
     }
 }
