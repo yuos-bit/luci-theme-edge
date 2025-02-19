@@ -87,11 +87,12 @@ img {
 }
 
 img.logo {
-    max-width: 100%;     /* 最大宽度为原始大小的 70% */
-    display: block;     /* 确保图片是块级元素 */
-    margin: 0 auto;     /* 左右自动居中 */
-    object-fit: contain;/* 保持图片比例，适应容器 */
-    margin-top: 10vh;  /* 添加顶部间距 */
+    max-width: 80%;        /* 最大宽度为原始大小的 80% */
+    display: block;        /* 确保图片是块级元素 */
+    margin-left: auto;     /* 左右自动居中 */
+    margin-right: auto;    /* 左右自动居中 */
+    object-fit: contain;   /* 保持图片比例，适应容器 */
+    margin-top: 15vh;      /* 添加顶部间距 */
 }
 
 img.logo2 {
@@ -2023,8 +2024,8 @@ small {
 .main-left .sidenav-header .brand .logo {
     max-width: 100%;
     height: auto;
-    margin-left: 0;          /* 确保 logo 左侧没有额外间距 */
-    margin-right: 5px;       /* 给右侧加一个 5px 的间距 */
+    margin-left: auto;      /* 左右自动居中 */
+    margin-right: auto;     /* 左右自动居中 */
 }
 
 .main-left::-webkit-scrollbar {
