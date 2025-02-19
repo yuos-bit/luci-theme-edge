@@ -30,7 +30,7 @@
 [immortalwrt]: https://github.com/immortalwrt/immortalwrt
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/jerrykuku/staff/master/argon_title4.svg">
+<img src="https://github.com/yuos-bit/other/releases/download/Openwrt/2025-02-19_16-58-54.jpg">
 
 # 一个全新的 OpenWrt 主题
 
