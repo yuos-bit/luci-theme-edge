@@ -1388,8 +1388,7 @@ textarea:focus-visible {
 a:link,
 a:visited,
 a:active {
-    color: #5e72e4;
-    color: var(--primary);
+    color: #b1bbf0;
     text-decoration: none
 }
 
