@@ -29,10 +29,10 @@
 [official]: https://github.com/openwrt/openwrt
 [immortalwrt]: https://github.com/immortalwrt/immortalwrt
 
-<div align="center">
+
 # 一个全新的 OpenWrt 主题
 
-Argon 是**一款干净整洁的 OpenWrt LuCI 主题**，  
+Edge2 是修改至argon的**一款干净整洁的 OpenWrt LuCI 主题**，  
 允许用户使用图片或视频自定义其登录界面。  
 它还支持在浅色模式和深色模式之间自动或手动切换。
 
@@ -43,7 +43,6 @@ Argon 是**一款干净整洁的 OpenWrt LuCI 主题**，
 [![download][download-badge]][download]
 [![contact][contact-badge]][contact]
 
-[English][en-us-link] |
 **简体中文**
 
 [特色](#特色) •
@@ -55,7 +54,6 @@ Argon 是**一款干净整洁的 OpenWrt LuCI 主题**，
 [鸣谢](#鸣谢)
 <img src="https://github.com/yuos-bit/other/releases/download/Openwrt/2025-02-19_16-58-54.jpg">
 <img src="https://raw.githubusercontent.com/jerrykuku/staff/master/argon2.gif">
-</div>
 
 ## 特色
 
@@ -67,48 +65,6 @@ Argon 是**一款干净整洁的 OpenWrt LuCI 主题**，
 - 通过系统自动在明暗模式之间切换，也可设置为固定模式。
 - 带有扩展功能的设置插件 [luci-app-argon-config][config-link]
 
-## 分支介绍
-
-目前有两个主要的分支，适应于不同版本的**OpenWrt**源代码。  
-下表为详细的介绍：
-
-| 分支   | 版本   | 介绍                        | 匹配源码                                              |
-| ------ | ------ | --------------------------- | ----------------------------------------------------- |
-| master | v2.x.x | 支持最新和比较新版本的 LuCI | [官方 OpenWrt][official] • [ImmortalWrt][immortalwrt] |
-| 18.06  | v1.x.x | 支持 18.06 版本的 LuCI      | [Lean's LEDE][lede]                                     |
-
-## 版本历史
-
-当前最新的版本为 v2.3.1 [点击这里][zh-cn-release-log]查看完整的版本历史日志.
-
-## 快速开始
-
-### 使用 Lean's LEDE 构建
-
-```bash
-cd lede/package/lean
-rm -rf luci-theme-argon
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git luci-theme-argon
-make menuconfig #choose LUCI->Theme->Luci-theme-argon
-make -j1 V=s
-```
-
-### 使用官方 OpenWrt SnapShots 和 ImmortalWrt
-
-```bash
-cd openwrt/package
-git clone https://github.com/jerrykuku/luci-theme-argon.git
-make menuconfig #choose LUCI->Theme->Luci-theme-argon
-make -j1 V=s
-```
-
-### 在 18.06 的 LuCI 上安装 ( Lean's LEDE )
-
-```bash
-wget --no-check-certificate https://github.com/jerrykuku/luci-theme-argon/releases/download/v1.8.2/luci-theme-argon_1.8.2-20230609_all.ipk
-opkg install luci-theme-argon*.ipk
-```
-
 ### 在官方和 ImmortalWrt 上安装
 
 ```bash
@@ -116,13 +72,6 @@ opkg install luci-compat
 opkg install luci-lib-ipkg
 wget --no-check-certificate https://github.com/jerrykuku/luci-theme-argon/releases/download/v2.3.2/luci-theme-argon_2.3.2-r20250207_all.ipk
 opkg install luci-theme-argon*.ipk
-```
-
-### 安装 luci-app-argon-config
-
-```bash
-wget --no-check-certificate https://github.com/jerrykuku/luci-app-argon-config/releases/download/v0.9/luci-app-argon-config_0.9_all.ipk
-opkg install luci-app-argon-config*.ipk
 ```
 
 ## 注意
@@ -144,12 +93,7 @@ opkg install luci-app-argon-config*.ipk
 
 Made with [contrib.rocks](https://contrib.rocks).
 
-## 相关项目
-
-- [luci-app-argon-config](https://github.com/jerrykuku/luci-app-argon-config): Argon 主题的设置插件
-- [openwrt-package](https://github.com/jerrykuku/openwrt-package): 我的 OpenWrt Package
-- [CasaOS](https://github.com/IceWhaleTech/CasaOS): 一个简单、易用且优雅的开源个人家庭云系统（我目前主要开发的项目）
-
 ## 鸣谢
 
 [luci-theme-material](https://github.com/LuttyYang/luci-theme-material/)
+[luci-theme-argon](https://github.com/jerrykuku/luci-theme-argon/)
