@@ -88,10 +88,10 @@ img {
 
 img.logo {
     max-width: 70%;     /* 最大宽度为原始大小的 70% */
-    height: auto;       /* 高度自适应 */
     display: block;     /* 确保图片是块级元素 */
     margin: 0 auto;     /* 左右自动居中 */
     object-fit: contain;/* 保持图片比例，适应容器 */
+    margin-top: 10vh;  /* 添加顶部间距 */
 }
 
 button,
@@ -1679,12 +1679,7 @@ h5 {
 
 /* 确保整个页面充满视口高度，并且内容水平垂直居中 */
 .login-page {
-    display: flex;                          /* 启用 Flexbox 布局，方便子元素的排列 */
-    justify-content: center;                /* 水平居中，确保容器在水平方向上居中 */
-    align-items: center;                    /* 垂直居中，确保容器在垂直方向上居中 */
-    height: 60vh;                          /* 页面视口高度60% */
-    margin: 0;                              /* 去除浏览器默认的外边距 */
-    padding: 0;                             /* 去除内边距，避免影响整体布局 */
+    display: flex;
 }
 
 .login-page .video {
@@ -1732,32 +1727,36 @@ h5 {
     background-size: cover;
     transition: all .5s
 }
-/* 设置登录容器的样式，使其横向长方形 */
+/* .login-container 相关样式 */
 .login-page .login-container {
-    display: flex;                          /* 启用 Flexbox 布局 */
-    flex-direction: column;                 /* 子元素纵向排列 */
-    justify-content: center;                /* 垂直居中对齐容器内的子元素 */
-    align-items: center;                    /* 水平居中对齐容器内的子元素 */
-    width: 60%;                             /* 设置容器宽度为页面宽度的 60%，你可以根据需要调整 */
-    max-width: 600px;                       /* 最大宽度为 600px，确保容器不会变得太大 */
-    height: 50%;                             /* 高度设为 50%，让它的高度小于宽度，形成横向长方形 */
-    background: transparent;                /* 背景透明 */
-    box-shadow: rgba(0, 0, 0, 0.75) 0 0 35px -5px;  /* 添加阴影效果，使容器更具层次感 */
-    margin: 0 auto;                         /* 水平居中容器 */
-    padding: 0;                             /* 去除内边距 */
-    position: relative;                     /* 保持相对定位，为子元素提供定位基础 */
-    box-sizing: border-box;                 /* 计算宽度时包括边框和内边距 */
+    display: flex;                    /* 启用 Flexbox 布局，使容器内的元素可以灵活排列 */
+    flex-direction: column;           /* 子元素纵向排列 */
+    justify-content: center;          /* 垂直居中子元素 */
+    align-items: center;              /* 水平居中子元素 */
+    height: 100vh;                    /* 设置容器高度为视口高度，确保登录框垂直居中 */
+    width: 100%;                      /* 容器宽度占满 100% */
+    max-width: 420px;                 /* 设置容器最大宽度为 420px */
+    background: transparent;         /* 背景透明 */
+    box-shadow: rgba(0, 0, 0, 0.75) 0 0 35px -5px;  /* 添加阴影效果，使容器更加立体 */
+    padding: 0px;                    /* 设置内边距，避免内容贴边 */
+    margin: 0 auto;                   /* 水平居中容器 */
+    position: relative;               /* 保持相对定位，为 footer 定位提供依据 */
+    box-sizing: border-box;           /* 确保 padding 和 border 不影响元素的总宽度和高度 */
+    height: auto;                     /* 让容器根据内容自适应高度 */
+    max-height: 72vh; /* 缩小容器最大高度 */
+    margin-top: 12vh;  /* 添加顶部间距 */
 }
-/* 设置登录表单区域的样式 */
+
+/* 登录表单区域 */
 .login-page .login-container .login-form {
-    display: flex;                           /* 启用 Flexbox 布局 */
-    flex-direction: column;                  /* 子元素纵向排列 */
-    align-items: center;                     /* 水平居中对齐表单内的元素 */
-    justify-content: center;                 /* 垂直居中对齐表单内的元素 */
-    width: 100%;                             /* 宽度为父容器的 100% */
-    max-width: 600px;                        /* 最大宽度为 600px，确保表单不会过宽 */
-    min-height: 100%;                        /* 最小高度为父容器的 100%，确保表单填满容器 */
-    background-color: rgba(244, 245, 247, var(--blur-opacity)); /* 设置背景色和透明度 */
+    display: flex;                    /* 启用 Flexbox 布局 */
+    flex-direction: column;           /* 子元素纵向排列 */
+    align-items: center;              /* 水平居中对齐子元素 */
+    justify-content: center;          /* 垂直居中对齐子元素 */
+    width: 100%;                      /* 宽度为父容器的 100% */
+    max-width: 420px;                 /* 最大宽度为 420px */
+    min-height: 100%;                 /* 最小高度为父容器的 100% */
+    background-color: rgba(244, 245, 247, var(--blur-opacity)); /* 设置带透明度的背景色 */
     -webkit-backdrop-filter: blur(var(--blur-radius));  /* 设置背景模糊（兼容 webkit） */
     backdrop-filter: blur(var(--blur-radius));          /* 设置背景模糊 */
 }
@@ -1794,7 +1793,7 @@ h5 {
 /* 登录表单 */
 .login-page .login-container .login-form .form-login {
     width: 100%;                             /* 宽度为父容器的 100% */
-    padding: 0;                              /* 去除内边距，避免多余空间 */
+    padding: 20px 50px;                      /* 设置内边距 */
     box-sizing: border-box;                  /* 包含内边距和边框的总尺寸计算 */
 }
 
@@ -1925,10 +1924,10 @@ h5 {
     margin-top: auto;                         /* 确保页脚位于容器底部 */
     padding: 0px 0px 30px;                    /* 内边距 */
     z-index: 10;                              /* 设置 z-index，确保页脚在内容上方 */
-    color: #525461;                           /* 页脚文字颜色 */
-    color: var(--default);                    /* 使用自定义颜色 */
-    position: absolute;                       /* 绝对定位 */
+    color: #52a8d1;                           /* 普通文字颜色：天蓝色 */
+    position: fixed;                          /* 固定定位 */
     bottom: 0;                                /* 距底部 0px */
+    left: 0;                                  /* 距左侧 0px */
 }
 
 /* 页脚版权信息 */
@@ -1938,11 +1937,20 @@ h5 {
     width: 100%;                              /* 宽度 100% */
 }
 
-/* 页脚链接 */
-.login-page .login-container footer .luci-link {
-    display: block;                           /* 设置为块级元素 */
+/* 所有页脚链接 */
+.login-page .login-container footer a {
+    color: white;                          /* 普通链接字体颜色：天蓝色 */
+    text-decoration: none;                    /* 去掉下划线 */
 }
 
+.login-page .login-container footer a:hover {
+    text-decoration: underline;               /* 悬浮时添加下划线 */
+}
+
+/* 页脚特定链接 */
+.login-page .login-container footer .luci-link {
+    color: white;                             /* 超链接字体颜色：白色 */
+}
 
 header,
 .main {
