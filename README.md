@@ -80,11 +80,6 @@ opkg install luci-theme-argon*.ipk
 - 微软已正式退役 Internet Explorer，安息吧 IE🙏<del>目前，IE 系列的主线版本有需要解决的错误。</del>
 - FireFox 默认不启用 backdrop-filter，[见这里](https://developer.mozilla.org/zh-CN/docs/Web/CSS/backdrop-filter)的打开方法。
 
-## 屏幕截图
-
-![desktop](/Screenshots/screenshot_pc.jpg)
-![mobile](/Screenshots/screenshot_phone.jpg)
-
 ## 贡献者
 
 <a href="https://github.com/jerrykuku/luci-theme-argon/graphs/contributors">
