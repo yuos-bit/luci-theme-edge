@@ -3,8 +3,8 @@
 if [ "$PKG_UPGRADE" != 1 ]; then
 	uci get luci.themes.Edge2 >/dev/null 2>&1 || \
 	uci batch <<-EOF
-		set luci.themes.Edge2=/luci-static/Edge2
-		set luci.main.mediaurlbase=/luci-static/Edge2
+		set luci.themes.Edge2=/luci-static/edge2
+		set luci.main.mediaurlbase=/luci-static/edge2
 		commit luci
 	EOF
 fi
