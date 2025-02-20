@@ -24,7 +24,7 @@ on:
     branches:
       - 'master'
     paths:
-      - 'luci-theme-argon/Makefile'
+      - 'luci-theme-edge2/Makefile'
 env:
   TZ: Asia/Shanghai
 
@@ -35,7 +35,7 @@ jobs:
     name: Check Version
     runs-on: ubuntu-latest
     outputs:
-      argon_version: ${{ steps.check_version.outputs.latest_version }}
+      edge2_version: ${{ steps.check_version.outputs.latest_version }}
       has_update: ${{ steps.check_version.outputs.has_update }}
     steps:
       - name: Checkout
@@ -68,8 +68,8 @@ jobs:
           tag_name: ${{steps.check_version.outputs.latest_version}}
 
 
-  job_build_argon:
-    name: Build Argon (master)
+  job_build_edge2:
+    name: Build Edge2 (master)
     needs: job_check
     if: needs.job_check.outputs.has_update == 'true'
     runs-on: ubuntu-latest
@@ -102,41 +102,41 @@ jobs:
           echo "src-git-full packages https://github.com/openwrt/packages.git;master" >> feeds.conf
           echo "src-git-full luci https://github.com/openwrt/luci.git;master" >> feeds.conf
           echo "src-git-full routing https://git.openwrt.org/feed/routing.git;master"  >> feeds.conf
-          git clone -b master https://github.com/${{ github.repository }}.git package/downloads/luci-theme-argon
+          git clone -b master https://github.com/${{ github.repository }}.git package/downloads/luci-theme-edge2
           ./scripts/feeds update -a
-          echo "CONFIG_PACKAGE_luci-theme-argon=m" > .config
-          ./scripts/feeds install -d n luci-theme-argon
+          echo "CONFIG_PACKAGE_luci-theme-edge2=m" > .config
+          ./scripts/feeds install -d n luci-theme-edge2
           make download -j8
 
-      - name: Configure Argon (master)
+      - name: Configure Edge2 (master)
         run: |
           cd sdk
-          ./scripts/feeds install luci-theme-argon
+          ./scripts/feeds install luci-theme-edge2
           echo "CONFIG_ALL_NONSHARED=n" > .config
           echo "CONFIG_ALL_KMODS=n" >> .config
           echo "CONFIG_ALL=n" >> .config
           echo "CONFIG_AUTOREMOVE=n" >> .config
           echo "CONFIG_LUCI_LANG_zh_Hans=y" >> .config
-          echo "CONFIG_PACKAGE_luci-theme-argon=m" >> .config
+          echo "CONFIG_PACKAGE_luci-theme-edge2=m" >> .config
           make defconfig
 
-      - name: Compile Argon (master)
+      - name: Compile Edge2 (master)
         id: compile
         run: |
           cd sdk
-          echo "make package/luci-theme-argon/{clean,compile} -j$(nproc)"
-          make package/luci-theme-argon/{clean,compile} -j$(nproc)
+          echo "make package/luci-theme-edge2/{clean,compile} -j$(nproc)"
+          make package/luci-theme-edge2/{clean,compile} -j$(nproc)
           mv bin/packages/x86_64/base/ ../
           rm .config .config.old
           cd ..
           echo "status=success" >> $GITHUB_OUTPUT
           echo "FIRMWARE=$PWD" >> $GITHUB_ENV
 
-      - name: Upload Argon (master) ipks to release
+      - name: Upload Edge2 (master) ipks to release
         uses: softprops/action-gh-release@v1
         if: steps.compile.outputs.status == 'success'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{needs.job_check.outputs.argon_version}}
+          tag_name: ${{needs.job_check.outputs.edge2_version}}
           files: ${{ env.FIRMWARE }}/base/luci-theme*.*
